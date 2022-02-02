@@ -13,32 +13,71 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text("Class Test - Online Exam Preparation App"),
+        title: Text(
+            //"Class Test - Online Exam Preparation App"
+            "Traffic Lights"),
       ),
-      body: Center(
+      backgroundColor: Colors.grey,
+      body: Padding(
+        padding: const EdgeInsets.all(6.0),
         child: Container(
-          padding: const EdgeInsets.all(10),
-          alignment: Alignment.center,
-          width: 100,
-          height: 100,
-          child: Text("I am a Box"),
-          decoration: BoxDecoration(
-              color: Colors.teal,
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: [
-                    0.1,
-                    0.3,
-                    0.7,
-                    1
-                  ],
-                  colors: [
-                    Colors.green,
-                    Colors.blue,
-                    Colors.orange,
-                    Colors.pink
-                  ])),
+          color: Colors.black,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.green,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 5,
+                        offset: Offset(5.0, 2.0),
+                      )
+                    ],
+                  ),
+                  width: 100,
+                  height: 100,
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.yellow,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 5,
+                        offset: Offset(5.0, 2.0),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.red,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 5,
+                        offset: Offset(5.0, 2.0),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
