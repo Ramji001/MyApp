@@ -21,9 +21,12 @@ class HomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(6.0),
         child: Container(
+          alignment: Alignment.center,
           color: Colors.black,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: 400,
+          height: 400,
+          // width: MediaQuery.of(context).size.width,
+          // height: MediaQuery.of(context).size.height,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
