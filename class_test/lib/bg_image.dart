@@ -9,5 +9,3 @@ class BgImage extends StatelessWidget {
     );
   }
 }
-
-//
