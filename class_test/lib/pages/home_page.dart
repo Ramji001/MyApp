@@ -1,6 +1,8 @@
 import 'package:class_test/detailsCard.dart';
 import 'package:class_test/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,12 +10,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // TextEditingController _nameController = TextEditingController();
-  // var myText = "Submit";
+  final TextEditingController _nameController = TextEditingController();
+  var myText = "Submit";
+  var url = Uri.https('jsonplaceholder.typicode.com', '/photos');
+  var data;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    // ignore: unused_local_variable
+    var res = await http.get(url);
+    data = jsonDecode(res.body);
+    setState(() {});
+    print(data);
   }
 
   @override
@@ -24,18 +36,25 @@ class _HomePageState extends State<HomePage> {
         // backgroundColor: Colors.blueGrey,
         title: Center(child: Text("Test Series for exams")),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Card(
-            margin: EdgeInsets.zero,
-            // color: Colors.grey[500],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-            ),
-            child: details_card(),
-          ),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: data != null
+            ? ListView.builder(
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(data[index]["title"]),
+                      subtitle: Text("ID: ${data[index]["id"]}"),
+                      leading: Image.network(data[index]["url"]),
+                    ),
+                  );
+                },
+                itemCount: data.length,
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: MyDrawer(),
       // floatingActionButtonLocation:
